@@ -60,7 +60,7 @@ function ProductDisplay() {
             <div className="flex justify-center mt-8 max950:flex-col max950:items-center ">
                 {window.innerWidth <= 600 ? (
                     <div className='flex flex-col items-center justify-center'>
-                        <img src={mainImage} alt="Main Product Image" className="w-[95vw]" />
+                        <img src={mainImage} alt="" className="w-[95vw]" />
                         <div className="flex gap-6 mt-2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6" onClick={handlePrevImage}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
@@ -87,7 +87,7 @@ function ProductDisplay() {
                         <div className='flex items-center' style={{
                             boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.1)'
                         }}>
-                            <img src={mainImage} alt="Main Product Image" className="" />
+                            <img src={mainImage} alt="" className="" />
                         </div>
                     </div>
                 )}
