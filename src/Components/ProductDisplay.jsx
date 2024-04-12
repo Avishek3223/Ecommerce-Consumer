@@ -73,14 +73,14 @@ function ProductDisplay() {
                 ) : (
                     <div className="flex gap-3">
                         <div className="flex flex-col gap-4">
-                            {product.images.map((image, index) => (
+                            {product.images.map((images, index) => (
                                 <img
                                     key={index}
-                                    src={image}
+                                    src={images}
                                     alt={`Product Image ${index + 1}`}
                                     className="h-[8rem] w-[11rem]"
                                     style={{ boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)', cursor: 'pointer' }}
-                                    onClick={() => handleImageClick(image)} // Click handler to set main image
+                                    onClick={() => handleImageClick(images)} // Click handler to set main image
                                 />
                             ))}
                         </div>
