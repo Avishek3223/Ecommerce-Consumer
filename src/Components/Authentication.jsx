@@ -3,7 +3,7 @@ import { Context } from '../Context/Context';
 import { useNavigate } from 'react-router-dom';
 
 const Authentication = () => {
-    const { setIsLoggedIn, setUser, isLoggedIn,user } = useContext(Context)
+    const { setIsLoggedIn, setUser,user } = useContext(Context)
     const [isRegister, setIsRegister] = useState(true);
     const Navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const Authentication = () => {
             setUser(storedUser)
             Navigate('/home');
         }
-
+        // eslint-disable-next-line
     }, [])
 
     const [formData, setFormData] = useState({
