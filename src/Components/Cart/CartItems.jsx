@@ -41,7 +41,7 @@ function CartItems() {
     const removeFromCart = async (productId) => {
         try {
             // Make a DELETE request to the backend API to remove the item from the cart
-            await axios.delete(`http://localhost:3000/api/user?userId=${user._id}&productId=${productId}`);
+            await axios.delete(`https://ecommerce-seller.onrender.com/api/user?userId=${user._id}&productId=${productId}`);
 
             // Update the local user state to reflect the changes
             const updatedCart = user.cart.filter((itemId) => itemId !== productId);

@@ -41,7 +41,7 @@ const Authentication = () => {
             }
 
             try {
-                const response = await fetch('http://localhost:3000/api/user', {
+                const response = await fetch('https://ecommerce-seller.onrender.com/api/user', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -66,7 +66,7 @@ const Authentication = () => {
             }
         } else {
             try {
-                const response = await fetch(`http://localhost:3000/api/user`, {
+                const response = await fetch(`https://ecommerce-seller.onrender.com/api/user`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'

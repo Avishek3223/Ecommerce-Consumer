@@ -21,7 +21,7 @@ const AddToCart = ({ productId }) => {
                 }
             };
 
-            await axios.put('http://localhost:3000/api/user', requestBody);
+            await axios.put('https://ecommerce-seller.onrender.com/api/user', requestBody);
             alert('Product added to cart successfully!');
             fetchUserData(); // Call fetchUserData after adding the product to the cart
         } catch (error) {

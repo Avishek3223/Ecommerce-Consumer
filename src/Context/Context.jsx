@@ -14,7 +14,7 @@ const ContextProvider = ({ children }) => {
   // Function to fetch product data
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/products");
+      const response = await axios.get("https://ecommerce-seller.onrender.com/api/products");
       const sortedProducts = response.data.sort((a, b) => {
         return new Date(b.updatedAt) - new Date(a.updatedAt);
       });
@@ -29,7 +29,7 @@ const ContextProvider = ({ children }) => {
   // Function to fetch category data
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/categories");
+      const response = await axios.get("https://ecommerce-seller.onrender.com/api/categories");
       setCategories(response.data);
     } catch (error) {
       console.error("Error fetching category data:", error);
@@ -47,7 +47,7 @@ const ContextProvider = ({ children }) => {
 
         // Fetch user data from the API to ensure it's up to date
         const response = await axios.get(
-          `http://localhost:3000/api/user?id=${storedUser._id}`
+          `https://ecommerce-seller.onrender.com/api/user?id=${storedUser._id}`
         );
         setUser(response.data);
         const cartItems =
