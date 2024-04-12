@@ -77,7 +77,7 @@ function ProductDisplay() {
                                 <img
                                     key={index}
                                     src={images}
-                                    alt={`Product Image ${index + 1}`}
+                                    alt=''
                                     className="h-[8rem] w-[11rem]"
                                     style={{ boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)', cursor: 'pointer' }}
                                     onClick={() => handleImageClick(images)} // Click handler to set main image
