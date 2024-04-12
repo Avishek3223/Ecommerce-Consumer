@@ -5,9 +5,8 @@ import { Context } from '../../Context/Context';
 const Navbar = () => {
   const [isListVisible, setIsListVisible] = useState(true);
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 950);
-  const [cartItems, setCartItems] = useState(0);
   const location = useLocation();
-  const { user, cartLength } = useContext(Context);
+  const {cartLength } = useContext(Context);
   console.log(cartLength)
 
   
