@@ -104,7 +104,7 @@ function ProductDisplay() {
                         <img src={emptyStar} alt="" />
                     </div>
                     <div className="flex flex-col gap-4 mt-5 max600:flex-row max600:justify-between max600:w-full">
-                        <div className="text-red-600 font-bold text-[2rem]">${product.price}</div>
+                        <div className="text-red-600 font-[500] text-[2rem]">${product.price}</div>
                         <AddToCart productId={product._id}/>
                     </div>
                 </div>

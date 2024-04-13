@@ -11,6 +11,7 @@ module.exports = {
         max850: { max: "850px" },
         min536: { min: "536px" },
         min800: { min: "800px" },
+        min1414: { min: "1414px" },
         min1050: { min: "1050px" },
         max1008: { max: "1008px" },
         max478: { max: "478px" },

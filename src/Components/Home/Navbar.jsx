@@ -7,9 +7,7 @@ const Navbar = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 950);
   const location = useLocation();
   const {cartLength } = useContext(Context);
-  console.log(cartLength)
 
-  
   const toggleListVisibility = () => {
     setIsListVisible(!isListVisible);
   };
@@ -36,7 +34,7 @@ const Navbar = () => {
       <div className="flex justify-between items-center p-3 bg-[#181818] text-[#dddddd]">
         <div>Ecommerce</div>
         <div>
-          <ul className={`flex gap-7 max950:flex-col max950:absolute right-0 max950:w-full max950:p-10 max950:text-[1.3rem] max950:h-screen z-[2] cursor-pointer ${isListVisible ? 'max950:bg-[#181818]' : ''}`}>
+          <ul className={`flex gap-[4rem] max950:flex-col max950:absolute right-0 max950:w-full max950:p-10 max950:text-[1.3rem] max950:h-screen z-[2] cursor-pointer ${isListVisible ? 'max950:bg-[#181818]' : ''}`}>
             {isListVisible && (
               <>
                 {/* Use Link to navigate to different pages */}

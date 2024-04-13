@@ -23,15 +23,15 @@ function Card({ id, title, description, price, thumbnail, offer }) {
 
   return (
     <Link to={`/productsdisplay?id=${id}`}>
-      <div className="max-w-xs h-[25rem] min-w-[20rem] rounded" style={style}>
-        <div className={offer ? 'absolute p-1 rounded-br-[10px] bg-[#ff4141] font-bold z-0' : 'hidden'}>{offer}% OFF</div>
+      <div className="max-w-xs h-[26rem] min-w-[20rem] rounded" style={style}>
+        <div className={offer ? 'absolute p-1 rounded-br-[10px] bg-[#ff4141] font-[600] z-0' : 'hidden'}>{offer}% OFF</div>
         <div className='h-[60%] max-h-[60%]'>
           <img className="m-auto h-full" src={thumbnail} alt={title} />
         </div>
         <div className="px-6 py-4 h-[40%] flex flex-col justify-between cursor-pointer">
           <div className='max-h-[20%]'>
-            <div className="font-bold text-[2vh] mb-2">{title}</div>
-            <p className="text-gray-700 text-base">{descriptionToShow}</p>
+            <div className="font-[400] text-[1.2rem] mb-2">{title}</div>
+            <p className="text-gray-700 text-[0.9rem]">{descriptionToShow}</p>
             <div className="mt-4 flex items-center justify-between">
               <span className="text-gray-700 text-base">Price: ${price}</span> 
               <AddToCart productId={id}/>

@@ -101,7 +101,7 @@ function CartItems() {
                 ))}
                 <div className="flex mt-8 justify-between max950:flex-col-reverse max950:items-center max950:gap-6">
                     <div className="flex flex-col w-[40vw] mr-16 max950:w-[75vw] max950:mr-0">
-                        <h1 className="text-[2.1rem] font-bold text-[#2e2e2e]">Cart Total</h1>
+                        <h1 className="text-[2.1rem] font-[600] text-[#2e2e2e]">Cart Total</h1>
                         <div className="mt-4 flex flex-col gap-5 text-[1.15rem] font-[500] text-[#797979]">
                             <div className="flex justify-between ">
                                 <p>Subtotal</p>

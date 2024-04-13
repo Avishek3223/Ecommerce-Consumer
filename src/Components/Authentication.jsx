@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Context } from '../Context/Context';
 import { useNavigate } from 'react-router-dom';
+import Loader from './Basic/Loader';
 
 const Authentication = () => {
-    const { setIsLoggedIn, setUser,user } = useContext(Context)
+    const { setIsLoggedIn, setUser, user } = useContext(Context)
     const [isRegister, setIsRegister] = useState(true);
+    const [loading, setLoading] = useState(false);
     const Navigate = useNavigate();
 
     useEffect(() => {
@@ -34,8 +36,10 @@ const Authentication = () => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true); // Set loading to true when form is submitted
         if (isRegister) {
             if (formData.password !== formData.confirmPassword) {
+                setLoading(false); // Set loading to false if there's an error
                 alert('Passwords do not match');
                 return;
             }
@@ -50,6 +54,7 @@ const Authentication = () => {
                 });
 
                 if (!response.ok) {
+                    setLoading(false); // Set loading to false if there's an error
                     throw new Error('Failed to register user');
                 }
 
@@ -62,6 +67,7 @@ const Authentication = () => {
                 Navigate('/home');
             } catch (error) {
                 console.error('Error:', error);
+                setLoading(false); // Set loading to false if there's an error
                 // Optionally, display an error message to the user
             }
         } else {
@@ -74,6 +80,7 @@ const Authentication = () => {
                 });
 
                 if (!response.ok) {
+                    setLoading(false); // Set loading to false if there's an error
                     throw new Error('Failed to login user');
                 }
 
@@ -97,64 +104,86 @@ const Authentication = () => {
                             Navigate('/home');
                             return; // Exit the loop if login is successful
                         } else {
+                            setLoading(false); // Set loading to false if there's an error
                             alert('Incorrect password');
                             return; // Exit the loop if password is incorrect
                         }
                     }
                 }
 
-                // If the loop finishes without finding a matching user, alert user not found
+                setLoading(false); // Set loading to false if user not found
                 alert('User not found');
             } catch (error) {
                 console.error('Error:', error);
+                setLoading(false); // Set loading to false if there's an error
                 // Optionally, display an error message to the user
             }
         }
     };
+
 
     const toggleForm = () => {
         setIsRegister(prevState => !prevState);
     };
 
     return (
-        <div className="authentication">
-            <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-8 mt-10 rounded shadow-md">
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Email:</label>
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} required className="w-full px-3 py-2 border rounded shadow appearance-none text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-                </div>
-                {isRegister && ( // Render additional inputs for register form
-                    <>
-                        <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">Username:</label>
-                            <input type="text" name="username" value={formData.username} onChange={handleChange} required className="w-full px-3 py-2 border rounded shadow appearance-none text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+        <div className="flex flex-col justify-center items-center h-screen">
+            {loading ? (
+                <Loader />
+            ) : (
+                <div className='min-w-[25rem] h-content'>
+                    <form onSubmit={handleSubmit} className="flex flex-col justify-center bg-[#ffffff] p-8 border-2 rounded-lg">
+                        {isRegister ? (
+                            <div>
+                                <p className='text-[1.3rem] font-light mb-2'>Welcome !</p>
+                                <h2 className='text-[2rem] font-[500] mb-2'>Sign up for</h2>
+                                <p>the ultimate Ecommerce adventure!</p>
+                            </div>
+                        ) : (
+                            <div>
+                                <p className='text-[1.3rem] font-light mb-2'>Welcome !</p>
+                                <h2 className='text-[2rem] font-[500] mb-2'>Login in for</h2>
+                                <p>the ultimate Ecommerce adventure!</p>
+                            </div>
+                        )}
+                        <div className="mb-6 mt-8">
+                            <label className="block text-[#242424] text-[1.1rem] font-[400] mb-2" htmlFor="email">Email:</label>
+                            <input placeholder='Enter your email' type="email" name="email" value={formData.email} onChange={handleChange} required className="w-full border-[0.1px] border-black h-[3rem] px-3 py-2 rounded-[6px] text-gray-700" />
                         </div>
-                        <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">Phone Number:</label>
-                            <input type="text" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required className="w-full px-3 py-2 border rounded shadow appearance-none text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                        {isRegister && ( // Render additional inputs for register form
+                            <>
+                                <div className="mb-6">
+                                    <label className="block text-[#242424] text-[1.1rem] font-[400] mb-2" htmlFor="username">Username:</label>
+                                    <input placeholder='Enter your name' type="text" name="username" value={formData.username} onChange={handleChange} required className="w-full border-[0.1px] border-black h-[3rem] px-3 py-2 rounded-[6px] text-gray-700" />
+                                </div>
+                                <div className="mb-6">
+                                    <label className="block text-[#242424] text-[1.1rem] font-[400] mb-2" htmlFor="username">Phone Number:</label>
+                                    <input placeholder='Enter your phoneNumber' type="text" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required className="w-full border-[0.1px] border-black h-[3rem] px-3 py-2 rounded-[6px] text-gray-700" />
+                                </div>
+                            </>
+                        )}
+                        <div className="mb-6">
+                            <label className="block text-[#242424] text-[1.1rem] font-[400] mb-2" htmlFor="password">Password:</label>
+                            <input placeholder='Enter your password' type="password" name="password" value={formData.password} onChange={handleChange} required className="w-full border-[0.1px] border-black h-[3rem] px-3 py-2 rounded-[6px] text-gray-700" />
                         </div>
-                    </>
-                )}
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">Password:</label>
-                    <input type="password" name="password" value={formData.password} onChange={handleChange} required className="w-full px-3 py-2 border rounded shadow appearance-none text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                        {isRegister && ( // Render confirmPassword input for register form
+                            <div className="mb-6">
+                                <label className="block text-[#242424] text-[1.1rem] font-[400] mb-2" htmlFor="confirmPassword">Confirm Password:</label>
+                                <input placeholder='Confirm your password' type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required className="w-full border border-black h-[3rem] px-3 py-2 rounded-[6px] text-gray-700" />
+                            </div>
+                        )}
+                        <button type="submit" className="bg-[#1f1f1f] text-white w-full hover:bg-[#383838] tracking-[1px] font-[400] py-3 px-4 rounded focus:outline-none focus:shadow-outline">{isRegister ? 'Register' : 'Login'}</button>
+                        <div className='flex gap-1 justify-center mt-2 font-[300]'>
+                            {isRegister ? (
+                                <div>Already have an account ?</div>
+                            ) : (
+                                <div>Don't have an account</div>
+                            )}
+                            <button onClick={toggleForm} className=" text-[#000000] hover:text-[gray] font-[600] rounded focus:outline-none focus:shadow-outline">{isRegister ? 'Login' : 'Register'}</button>
+                        </div>
+                    </form>
                 </div>
-                {isRegister && ( // Render confirmPassword input for register form
-                    <div className="mb-6">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirmPassword">Confirm Password:</label>
-                        <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required className="w-full px-3 py-2 border rounded shadow appearance-none text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-                    </div>
-                )}
-                <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{isRegister ? 'Register' : 'Login'}</button>
-                <div className='flex gap-2 justify-center mt-2'>
-                    {isRegister ? (
-                        <div>If already Registered then</div>
-                    ) : (
-                        <div>Don't have an account</div>
-                    )}
-                    <button onClick={toggleForm} className=" text-[#87ff57] hover:text-[gray] font-bold rounded focus:outline-none focus:shadow-outline">{isRegister ? 'Login' : 'Register'}</button>
-                </div>
-            </form>
+            )}
         </div>
     );
 };
